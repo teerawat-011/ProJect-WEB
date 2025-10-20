@@ -27,8 +27,8 @@ if (mysqli_stmt_num_rows($stmt) > 0) {
 mysqli_stmt_close($stmt);
 
 // ตรงนี้จะเก็บรหัสผ่านเป็น plain-text ตามคำขอ
-$stmt = mysqli_prepare($conn, "INSERT INTO useraccount (u_fname, u_lname, u_username, u_password) VALUES (, ?, ?, ?, ?)");
-mysqli_stmt_bind_param($stmt,$fname, $lname, $username, $password);
+$stmt = mysqli_prepare($conn, "INSERT INTO useraccount (u_fname, u_lname, u_username, u_password) VALUES (?, ?, ?, ?)");
+mysqli_stmt_bind_param($stmt, "ssss", $fname, $lname, $username, $password);
 $ok = mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
@@ -40,3 +40,4 @@ if ($ok) {
     exit;
 }
 ?>
+
